@@ -1,5 +1,19 @@
+$primary-color: #87B37A;
+$secondary-color: #4B296B;
+$tertiary-color: #9CE37D;
+$quaternary-color: #77867F;
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1;
 }
