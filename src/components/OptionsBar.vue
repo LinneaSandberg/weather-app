@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, onMounted } from "vue";
 import WeatherDisplay from "./WeatherDisplay.vue";
-import axios from "axios";
+import { geocoding } from "../services/openMateo";
 
 const city = ref("");
 const data = ref(null);
@@ -17,18 +17,19 @@ const fetchLocationData = async (newCity) => {
 
 	// Fetch data from API
 	try {
-		const res = await axios.get(
-			`https://geocoding-api.open-meteo.com/v1/search?name=${newCity}&count=1&language=en&format=json`
-		);
+		// const res = await axios.get(
+		// 	`https://geocoding-api.open-meteo.com/v1/search?name=${newCity}&count=1&language=en&format=json`
+		// );
+		const data = await geocoding(newCity);
 		// const responseData = await res.json();
-		// console.log("res: ", res.data);
+		console.log("data: ", data);
 
-		if (res.data.results && res.data.results.length > 0) {
+		if (data.results && data.results.length > 0) {
 			// console.log("latitude:", res.data.results[0].latitude);
 			// console.log("longitude:", res.data.results[0].longitude);
 
-			latitude.value = res.data.results[0].latitude;
-			longitude.value = res.data.results[0].longitude;
+			latitude.value = data.results[0].latitude;
+			longitude.value = data.results[0].longitude;
 		}
 	} catch (error) {
 		console.error(error);
