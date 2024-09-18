@@ -1,20 +1,18 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { fetchWeatherApi } from "openmeteo";
-import axios from "axios";
+import { getWeather } from "../services/openMateo";
 
 const props = defineProps({ latitude: Number, longitude: Number });
 const weatherData = ref(null);
 
 const fetchWeatherData = async () => {
 	try {
-		const response = await axios.get(
-			`https://api.open-meteo.com/v1/forecast?latitude=${props.latitude}&longitude=${props.longitude}&daily=temperature_2m_max,temperature_2m_min&timezone=auto`
-		);
+		const data = await getWeather(props.latitude, props.longitude);
 
-		if (response && response.data) {
-			console.log("Weather data: ", response.data);
-			weatherData.value = response.data;
+		if (data) {
+			console.log("Weather data: ", data);
+			weatherData.value = data;
 		}
 	} catch (error) {
 		console.error(error);
