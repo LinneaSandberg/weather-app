@@ -184,7 +184,7 @@ onMounted(() => {
 			{{ showAllDays ? "Only todays weather" : "Show 7 days weather" }}
 		</button>
 
-		<div v-if="weatherData" class="list-wrapper">
+		<div v-if="weatherData" :class="['list-wrapper', { 'grid-view': showAllDays }]">
 			<WeatherCard
 				v-for="(time, index) in showAllDays
 					? weatherData.daily.time
