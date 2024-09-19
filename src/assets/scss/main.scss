@@ -17,3 +17,65 @@ h5,
 h6 {
     line-height: 1;
 }
+
+header {
+    background-color: $primary-color;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+main {
+    padding: 0 20px;
+}
+
+.search-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.display-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.weather-display-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+
+    .list-wrapper {
+        // display: flex;
+        // flex-wrap: wrap;
+        // justify-content: center;
+        // align-items: center;
+        // gap: 1rem;
+
+
+        .card {
+            border: $secondary-color 2px solid;
+            border-radius: 2px;
+            padding: 2rem;
+            margin: 1rem;
+
+            min-height: 200px;
+        }
+
+
+        ul {
+            list-style: none;
+        }
+
+    }
+
+
+
+
+}

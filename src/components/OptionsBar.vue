@@ -36,21 +36,20 @@ const fetchLocationData = async (newCity) => {
 	}
 };
 
-watch(city, (newCity) => {
-	// console.log(`New city: ${newCity}`);
-	fetchLocationData(newCity);
-});
+// watch(city, (newCity) => {
+// 	// console.log(`New city: ${newCity}`);
+// 	fetchLocationData(newCity);
+// });
 
 onMounted(() => {
-	const defaultCity = "Berlin";
-	// console.log("Component mounted");
+	const defaultCity = "Trelleborg";
 	city.value = defaultCity;
 	fetchLocationData(defaultCity);
 });
 </script>
 
 <template>
-	<div>
+	<div class="search-wrapper">
 		<p>Searched city: {{ city }}</p>
 		<form @submit.prevent="fetchLocationData(city)">
 			<label for="search">Search: </label>
@@ -61,7 +60,7 @@ onMounted(() => {
 		<p v-if="longitude">Longitude: {{ longitude }}</p>
 	</div>
 
-	<div v-if="latitude && longitude">
-		<WeatherDisplay :latitude="latitude" :longitude="longitude" />
+	<div v-if="latitude && longitude" class="display-wrapper">
+		<WeatherDisplay :latitude="latitude" :longitude="longitude" :city="city" />
 	</div>
 </template>
