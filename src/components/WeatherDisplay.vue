@@ -2,6 +2,11 @@
 import { onMounted, ref, watch } from "vue";
 import { fetchWeatherApi } from "openmeteo";
 import { getWeather } from "../services/openMateo";
+import sunIcon from "../assets/images/sunIcon.svg";
+import cloudIcon from "../assets/images/cloudIcon.svg";
+import rainIcon from "../assets/images/rainIcon.svg";
+import snowIcon from "../assets/images/snowIcon.svg";
+import stormIcon from "../assets/images/stormIcon.svg";
 
 const props = defineProps({
 	latitude: Number,
@@ -9,6 +14,76 @@ const props = defineProps({
 	city: String,
 });
 const weatherData = ref(null);
+
+const weatherConditions = {
+	0: { description: "Clear sky", icon: sunIcon },
+	1: { description: "Mainly clear", icon: sunIcon },
+	2: { description: "Partly cloudy", icon: cloudIcon },
+	3: { description: "Overcast", icon: cloudIcon },
+	45: { description: "Fog", icon: cloudIcon },
+	48: { description: "Depositing rime fog", icon: cloudIcon },
+	51: { description: "Drizzle: Light intensity", icon: snowIcon },
+	53: { description: "Drizzle: Moderate intensity", icon: snowIcon },
+	55: { description: "Drizzle: Dense intensity", icon: snowIcon },
+	56: {
+		description: "Freezing Drizzle: Light intensity",
+		icon: snowIcon,
+	},
+	57: {
+		description: "Freezing Drizzle: Dense intensity",
+		icon: snowIcon,
+	},
+	61: { description: "Rain: Slight intensity", icon: rainIcon },
+	63: { description: "Rain: Moderate intensity", icon: rainIcon },
+	65: { description: "Rain: Heavy intensity", icon: rainIcon },
+	66: {
+		description: "Freezing Rain: Light intensity",
+		icon: rainIcon,
+	},
+	67: {
+		description: "Freezing Rain: Heavy intensity",
+		icon: rainIcon,
+	},
+	71: { description: "Snow fall: Slight intensity", icon: stormIcon },
+	73: {
+		description: "Snow fall: Moderate intensity",
+		icon: stormIcon,
+	},
+	75: { description: "Snow fall: Heavy intensity", icon: stormIcon },
+	77: { description: "Snow grains", icon: stormIcon },
+	80: {
+		description: "Rain showers: Slight intensity",
+		icon: rainIcon,
+	},
+	81: {
+		description: "Rain showers: Moderate intensity",
+		icon: rainIcon,
+	},
+	82: {
+		description: "Rain showers: Violent intensity",
+		icon: rainIcon,
+	},
+	85: {
+		description: "Snow showers: Slight intensity",
+		icon: snowIcon,
+	},
+	86: {
+		description: "Snow showers: Heavy intensity",
+		icon: snowIcon,
+	},
+	95: {
+		description: "Thunderstorm: Slight or moderate intensity",
+		icon: stormIcon,
+	},
+	96: {
+		description: "Thunderstorm with slight hail",
+		icon: stormIcon,
+	},
+	99: {
+		description: "Thunderstorm with heavy hail",
+		icon: stormIcon,
+	},
+};
 
 const fetchWeatherData = async () => {
 	if (props.latitude !== null && props.longitude !== null) {
@@ -42,6 +117,22 @@ const getSunset = (index: number) => {
 	}
 };
 
+const getIcon = (index: number) => {
+	if (weatherData.value) {
+		const condition = weatherData.value.daily.weather_code[index];
+		return weatherConditions[condition].icon;
+	}
+	return "";
+};
+
+const getDescription = (index: number) => {
+	if (weatherData.value) {
+		const condition = weatherData.value.daily.weather_code[index];
+		return weatherConditions[condition].description;
+	}
+	return "";
+};
+
 watch(
 	() => [props.latitude, props.longitude],
 	([newLatitude, newLongitude], [oldLatitude, oldLongitude]) => {
@@ -63,57 +154,18 @@ onMounted(() => {
 
 		<div v-if="weatherData" class="list-wrapper">
 			<div v-for="(time, index) in weatherData.daily.time" :key="index" class="card">
-				<h3>{{ time }}</h3>
-				<ul>
-					<li>
-						Max temperature for today:
-						{{ weatherData.daily.temperature_2m_max[index] }}°C
-					</li>
-					<li>
-						Min temperature for today:
-						{{ weatherData.daily.temperature_2m_min[index] }}°C
-					</li>
-					<li>
-						The sunrise is at: <strong>{{ getSunrise(index) }}</strong>
-					</li>
-					<li>
-						The sunset is at: <strong>{{ getSunset(index) }}</strong>
-					</li>
-					<li></li>
-					<li></li>
-				</ul>
+				<!-- <h3>{{ time }}</h3> -->
+				<div class="card-content-wrapper">
+					<img class="weather-icon" :src="getIcon(index)" :alt="getDescription(index)" />
+					<div>
+						<p>
+							{{ time }}
+						</p>
+						<p></p>
+					</div>
+					<p></p>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
-
-<!-- const weatherConditions: { number: string } = {
-	0: "Clear sky",
-	1: "Mainly clear",
-	2: "Partly cloudy",
-	3: "Overcast",
-	45: "Fog",
-	48: "Depositing rime fog",
-	51: "Drizzle: Light intensity",
-	53: "Drizzle: Moderate intensity",
-	55: "Drizzle: Dense intensity",
-	56: "Freezing Drizzle: Light intensity",
-	57: "Freezing Drizzle: Dense intensity",
-	61: "Rain: Slight intensity",
-	63: "Rain: Moderate intensity",
-	65: "Rain: Heavy intensity",
-	66: "Freezing Rain: Light intensity",
-	67: "Freezing Rain: Heavy intensity",
-	71: "Snow fall: Slight intensity",
-	73: "Snow fall: Moderate intensity",
-	75: "Snow fall: Heavy intensity",
-	77: "Snow grains",
-	80: "Rain showers: Slight intensity",
-	81: "Rain showers: Moderate intensity",
-	82: "Rain showers: Violent intensity",
-	85: "Snow showers: Slight intensity",
-	86: "Snow showers: Heavy intensity",
-	95: "Thunderstorm: Slight or moderate intensity",
-	96: "Thunderstorm with slight hail",
-	99: "Thunderstorm with heavy hail",
-}; -->

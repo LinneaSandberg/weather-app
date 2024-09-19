@@ -89,30 +89,23 @@ header {
 
 
     .list-wrapper {
-        // display: flex;
-        // flex-wrap: wrap;
-        // justify-content: center;
-        // align-items: center;
-        // gap: 1rem;
-
 
         .card {
             border: var(--dark-blue) 2px solid;
             border-radius: 2px;
             padding: 2rem;
             margin: 1rem;
+            min-height: 400px;
 
-            min-height: 200px;
+            .card-content-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .weather-icon {
+                    height: 150px;
+                }
+            }
         }
-
-
-        ul {
-            list-style: none;
-        }
-
     }
-
-
-
-
 }
