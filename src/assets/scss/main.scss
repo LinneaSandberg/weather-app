@@ -53,20 +53,22 @@ header {
             align-items: center;
 
             button {
-                padding: 0.5rem 1rem;
+                padding: 1rem 1rem;
                 background-color: var(--dark-blue);
                 color: white;
                 border: none;
                 cursor: pointer;
                 border-top-right-radius: 2px;
                 border-bottom-right-radius: 2px;
+                font-size: 1rem;
             }
 
             input {
-                padding: 0.5rem;
+                padding: 1rem;
                 border: none;
                 border-top-left-radius: 2px;
                 border-bottom-left-radius: 2px;
+                font-size: 1rem;
             }
         }
     }
@@ -87,23 +89,89 @@ header {
     align-items: center;
     justify-content: center;
 
-
     .list-wrapper {
-
         .card {
             border: var(--dark-blue) 2px solid;
-            border-radius: 2px;
+            border-radius: 10px;
             padding: 2rem;
             margin: 1rem;
             min-height: 400px;
+            min-width: 300px;
+            background-color: white;
 
-            .card-content-wrapper {
+            .upper-wrapper {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
 
                 .weather-icon {
                     height: 150px;
+                    margin-bottom: 1rem;
+                }
+
+                .short-info-wrapper {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-evenly;
+                    width: 100%;
+                }
+
+                .midtemp {
+                    font-size: 2rem;
+                    padding: 1rem;
+                }
+            }
+
+            .lower-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .inside-wrapper {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-evenly;
+                    width: 100%;
+                    margin: 1rem 0;
+
+                    .outer-icon-text {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+
+                        img {
+                            height: 15px;
+                            margin-right: 0.5rem;
+                        }
+
+                        .align-text {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+                        }
+                    }
+
+                    .icon-text {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+
+                        img {
+                            height: 15px;
+                            margin-bottom: 0.5rem;
+                        }
+                    }
+
+                    .icon-suns {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+
+                        img {
+                            height: 15px;
+                            margin-bottom: 0.5rem;
+                        }
+                    }
                 }
             }
         }

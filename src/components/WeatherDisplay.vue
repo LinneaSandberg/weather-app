@@ -7,6 +7,9 @@ import cloudIcon from "../assets/images/cloudIcon.svg";
 import rainIcon from "../assets/images/rainIcon.svg";
 import snowIcon from "../assets/images/snowIcon.svg";
 import stormIcon from "../assets/images/stormIcon.svg";
+import windIcon from "../assets/images/windIcon.svg";
+import arrowUp from "../assets/images/arrowUp.svg";
+import arrowDown from "../assets/images/arrowDown.svg";
 
 const props = defineProps({
 	latitude: Number,
@@ -133,6 +136,26 @@ const getDescription = (index: number) => {
 	return "";
 };
 
+const getWeekday = (dateString) => {
+	const date = new Date(dateString);
+	const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+	return weekdays[date.getDay()];
+};
+
+const formatDate = (dateString) => {
+	const date = new Date(dateString);
+	const options = { month: "short", day: "numeric" };
+	return new Intl.DateTimeFormat("en-US", options).format(date);
+};
+
+const midTemp = (index: number) => {
+	return (
+		(weatherData.value.daily.temperature_2m_max[index] +
+			weatherData.value.daily.temperature_2m_min[index]) /
+		2
+	);
+};
+
 watch(
 	() => [props.latitude, props.longitude],
 	([newLatitude, newLongitude], [oldLatitude, oldLongitude]) => {
@@ -155,15 +178,53 @@ onMounted(() => {
 		<div v-if="weatherData" class="list-wrapper">
 			<div v-for="(time, index) in weatherData.daily.time" :key="index" class="card">
 				<!-- <h3>{{ time }}</h3> -->
-				<div class="card-content-wrapper">
+				<div class="upper-wrapper">
 					<img class="weather-icon" :src="getIcon(index)" :alt="getDescription(index)" />
-					<div>
+					<div class="short-info-wrapper">
 						<p>
-							{{ time }}
+							{{ getWeekday(time) }}
 						</p>
-						<p></p>
+						<hr color="#2c67f2" />
+						<p>
+							{{ formatDate(time) }}
+						</p>
 					</div>
-					<p></p>
+					<p class="midtemp">{{ midTemp(index) }} °C</p>
+				</div>
+				<hr color="#2c67f2" />
+				<div class="lower-wrapper">
+					<div class="inside-wrapper">
+						<div class="outer-icon-text">
+							<img :src="rainIcon" alt="" />
+							<div class="align-text">
+								<p>{{ weatherData.daily.rain_sum[index] }} mm/day</p>
+								<p>Rain</p>
+							</div>
+						</div>
+						<div class="icon-text">
+							<div class="icon-suns">
+								<img :src="sunIcon" alt="" />
+								<img :src="arrowUp" alt="" />
+							</div>
+							<p>{{ getSunrise(index) }}</p>
+						</div>
+					</div>
+					<div class="inside-wrapper">
+						<div class="outer-icon-text">
+							<img :src="windIcon" alt="" />
+							<div class="align-text">
+								<p>{{ weatherData.daily.wind_speed_10m_max[index] }} km/h</p>
+								<p>Wind</p>
+							</div>
+						</div>
+						<div class="icon-text">
+							<div class="icon-suns">
+								<img :src="arrowDown" alt="" />
+								<img :src="sunIcon" alt="" />
+							</div>
+							<p>{{ getSunset(index) }}</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
