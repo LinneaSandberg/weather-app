@@ -89,20 +89,32 @@ header {
     align-items: center;
     justify-content: center;
 
+    .select-button {
+        padding: 1rem 2rem;
+        background-color: var(--dark-blue);
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 2px;
+        font-size: 0.8rem;
+        margin: 1rem;
+    }
+
     .list-wrapper {
         .card {
             border: var(--dark-blue) 2px solid;
             border-radius: 10px;
             padding: 2rem;
             margin: 1rem;
-            min-height: 400px;
-            min-width: 300px;
+            height: 500px;
+            width: 350px;
             background-color: white;
 
             .upper-wrapper {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                margin-bottom: 1rem;
 
                 .weather-icon {
                     height: 150px;
@@ -114,6 +126,7 @@ header {
                     flex-direction: row;
                     justify-content: space-evenly;
                     width: 100%;
+                    margin-bottom: 1rem;
                 }
 
                 .midtemp {
@@ -126,6 +139,7 @@ header {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                margin-top: 1rem;
 
                 .inside-wrapper {
                     display: flex;

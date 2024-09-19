@@ -10,6 +10,7 @@ import stormIcon from "../assets/images/stormIcon.svg";
 import windIcon from "../assets/images/windIcon.svg";
 import arrowUp from "../assets/images/arrowUp.svg";
 import arrowDown from "../assets/images/arrowDown.svg";
+import WeatherCard from "./WeatherCard.vue";
 
 const props = defineProps({
 	latitude: Number,
@@ -17,6 +18,7 @@ const props = defineProps({
 	city: String,
 });
 const weatherData = ref(null);
+const showAllDays = ref(false);
 
 const weatherConditions = {
 	0: { description: "Clear sky", icon: sunIcon },
@@ -150,9 +152,12 @@ const formatDate = (dateString) => {
 
 const midTemp = (index: number) => {
 	return (
-		(weatherData.value.daily.temperature_2m_max[index] +
-			weatherData.value.daily.temperature_2m_min[index]) /
-		2
+		Math.round(
+			((weatherData.value.daily.temperature_2m_max[index] +
+				weatherData.value.daily.temperature_2m_min[index]) /
+				2) *
+				10
+		) / 10
 	);
 };
 
@@ -175,58 +180,35 @@ onMounted(() => {
 		<h2 v-if="city">{{ city }}</h2>
 		<h2 v-if="!city">No mans land..</h2>
 
+		<button @click="showAllDays = !showAllDays" class="select-button">
+			{{ showAllDays ? "Only todays weather" : "Show 7 days weather" }}
+		</button>
+
 		<div v-if="weatherData" class="list-wrapper">
-			<div v-for="(time, index) in weatherData.daily.time" :key="index" class="card">
-				<!-- <h3>{{ time }}</h3> -->
-				<div class="upper-wrapper">
-					<img class="weather-icon" :src="getIcon(index)" :alt="getDescription(index)" />
-					<div class="short-info-wrapper">
-						<p>
-							{{ getWeekday(time) }}
-						</p>
-						<hr color="#2c67f2" />
-						<p>
-							{{ formatDate(time) }}
-						</p>
-					</div>
-					<p class="midtemp">{{ midTemp(index) }} °C</p>
-				</div>
-				<hr color="#2c67f2" />
-				<div class="lower-wrapper">
-					<div class="inside-wrapper">
-						<div class="outer-icon-text">
-							<img :src="rainIcon" alt="" />
-							<div class="align-text">
-								<p>{{ weatherData.daily.rain_sum[index] }} mm/day</p>
-								<p>Rain</p>
-							</div>
-						</div>
-						<div class="icon-text">
-							<div class="icon-suns">
-								<img :src="sunIcon" alt="" />
-								<img :src="arrowUp" alt="" />
-							</div>
-							<p>{{ getSunrise(index) }}</p>
-						</div>
-					</div>
-					<div class="inside-wrapper">
-						<div class="outer-icon-text">
-							<img :src="windIcon" alt="" />
-							<div class="align-text">
-								<p>{{ weatherData.daily.wind_speed_10m_max[index] }} km/h</p>
-								<p>Wind</p>
-							</div>
-						</div>
-						<div class="icon-text">
-							<div class="icon-suns">
-								<img :src="arrowDown" alt="" />
-								<img :src="sunIcon" alt="" />
-							</div>
-							<p>{{ getSunset(index) }}</p>
-						</div>
-					</div>
-				</div>
-			</div>
+			<WeatherCard
+				v-for="(time, index) in showAllDays
+					? weatherData.daily.time
+					: [weatherData.daily.time[0]]"
+				:key="index"
+				:time="time"
+				:index="index"
+				:getIcon="getIcon(index)"
+				:getDescription="getDescription(index)"
+				:weekday="getWeekday(time)"
+				:formattedDate="formatDate(time)"
+				:midTemp="midTemp(index)"
+				:rainSum="weatherData.daily.rain_sum[index]"
+				:sunrise="getSunrise(index)"
+				:sunset="getSunset(index)"
+				:windSpeedMax="weatherData.daily.wind_speed_10m_max[index]"
+				:rainIcon="rainIcon"
+				:sunIcon="sunIcon"
+				:arrowUp="arrowUp"
+				:arrowDown="arrowDown"
+				:windIcon="windIcon"
+				class="card"
+			>
+			</WeatherCard>
 		</div>
 	</div>
 </template>
