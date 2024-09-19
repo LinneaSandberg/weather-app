@@ -1,7 +1,7 @@
-$primary-color: #87B37A;
-$secondary-color: #4B296B;
-$tertiary-color: #9CE37D;
-$quaternary-color: #77867F;
+:root {
+    --dark-blue: #2c67f2;
+    --light-blue: #62cff4;
+}
 
 * {
     box-sizing: border-box;
@@ -18,21 +18,58 @@ h6 {
     line-height: 1;
 }
 
-header {
-    background-color: $primary-color;
-    color: white;
-    padding: 2rem;
-    text-align: center;
+#app {
+    background: rgb(44, 103, 242);
+    background: linear-gradient(0deg, rgba(44, 103, 242, 1) 0%, rgba(98, 207, 244, 1) 100%);
 }
 
-main {
-    padding: 0 20px;
+header {
+    padding: 4rem 0 2rem 0;
+    text-align: center;
 }
 
 .search-wrapper {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+
+    form {
+        padding: 4rem 0;
+        text-align: center;
+
+        label {
+            display: block;
+            margin: 1rem 0;
+            font-size: 1.5rem;
+        }
+
+        .input-submit-wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            button {
+                padding: 0.5rem 1rem;
+                background-color: var(--dark-blue);
+                color: white;
+                border: none;
+                cursor: pointer;
+                border-top-right-radius: 2px;
+                border-bottom-right-radius: 2px;
+            }
+
+            input {
+                padding: 0.5rem;
+                border: none;
+                border-top-left-radius: 2px;
+                border-bottom-left-radius: 2px;
+            }
+        }
+    }
 }
 
 .display-wrapper {
@@ -60,7 +97,7 @@ main {
 
 
         .card {
-            border: $secondary-color 2px solid;
+            border: var(--dark-blue) 2px solid;
             border-radius: 2px;
             padding: 2rem;
             margin: 1rem;

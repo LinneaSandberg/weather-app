@@ -50,14 +50,16 @@ onMounted(() => {
 
 <template>
 	<div class="search-wrapper">
-		<p>Searched city: {{ city }}</p>
+		<!-- <div class="search-elements-wrapper"> -->
+		<!-- <p>Searched city: {{ city }}</p> -->
 		<form @submit.prevent="fetchLocationData(city)">
-			<label for="search">Search: </label>
-			<input type="text" placeholder="Enter a city" id="search" v-model="city" />
-			<button type="submit">Submit</button>
+			<label for="search">Search for a city!</label>
+			<div class="input-submit-wrapper">
+				<input type="text" placeholder="Enter a city" id="search" v-model="city" />
+				<button type="submit">Submit</button>
+			</div>
 		</form>
-		<p v-if="latitude">Latitude: {{ latitude }}</p>
-		<p v-if="longitude">Longitude: {{ longitude }}</p>
+		<!-- </div> -->
 	</div>
 
 	<div v-if="latitude && longitude" class="display-wrapper">
