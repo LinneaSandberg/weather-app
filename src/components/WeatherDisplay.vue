@@ -11,16 +11,21 @@ import windIcon from "../assets/images/windIcon.svg";
 import arrowUp from "../assets/images/arrowUp.svg";
 import arrowDown from "../assets/images/arrowDown.svg";
 import WeatherCard from "./WeatherCard.vue";
+import { GetWeatherResponse } from "@/types/OpenMateo.types";
 
 const props = defineProps({
 	latitude: Number,
 	longitude: Number,
 	city: String,
 });
-const weatherData = ref(null);
+const weatherData = ref<null | GetWeatherResponse>(null);
 const showAllDays = ref(false);
 
-const weatherConditions = {
+interface WeatherConditions {
+	[key: number]: { description: string; icon: string };
+}
+
+const weatherConditions: WeatherConditions = {
 	0: { description: "Clear sky", icon: sunIcon },
 	1: { description: "Mainly clear", icon: sunIcon },
 	2: { description: "Partly cloudy", icon: cloudIcon },
@@ -90,8 +95,8 @@ const weatherConditions = {
 	},
 };
 
-const fetchWeatherData = async () => {
-	if (props.latitude !== null && props.longitude !== null) {
+const fetchWeatherData = async (): Promise<void> => {
+	if (props.latitude && props.longitude) {
 		try {
 			const data = await getWeather(props.latitude, props.longitude);
 
@@ -125,7 +130,7 @@ const getSunset = (index: number) => {
 const getIcon = (index: number) => {
 	if (weatherData.value) {
 		const condition = weatherData.value.daily.weather_code[index];
-		return weatherConditions[condition].icon;
+		return weatherConditions[condition as number].icon;
 	}
 	return "";
 };
@@ -133,24 +138,25 @@ const getIcon = (index: number) => {
 const getDescription = (index: number) => {
 	if (weatherData.value) {
 		const condition = weatherData.value.daily.weather_code[index];
-		return weatherConditions[condition].description;
+		return weatherConditions[condition as number].description;
 	}
 	return "";
 };
 
-const getWeekday = (dateString) => {
+const getWeekday = (dateString: string) => {
 	const date = new Date(dateString);
 	const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 	return weekdays[date.getDay()];
 };
 
-const formatDate = (dateString) => {
+const formatDate = (dateString: string) => {
 	const date = new Date(dateString);
-	const options = { month: "short", day: "numeric" };
+	const options: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" };
 	return new Intl.DateTimeFormat("en-US", options).format(date);
 };
 
 const midTemp = (index: number) => {
+	if (!weatherData.value) return undefined;
 	return (
 		Math.round(
 			((weatherData.value.daily.temperature_2m_max[index] +

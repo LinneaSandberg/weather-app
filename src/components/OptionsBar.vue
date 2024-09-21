@@ -5,10 +5,10 @@ import { geocoding } from "../services/openMateo";
 
 const city = ref("");
 const data = ref(null);
-const latitude = ref(null);
-const longitude = ref(null);
+const latitude = ref<number | null>(null);
+const longitude = ref<number | null>(null);
 
-const fetchLocationData = async (newCity) => {
+const fetchLocationData = async (newCity: string) => {
 	if (!newCity) return;
 
 	try {
