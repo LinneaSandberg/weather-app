@@ -31,7 +31,6 @@ export const formatDate = (dateString: string) => {
 };
 
 export const averageTemp = (index: number, weatherData: GetWeatherResponse) => {
-	if (!weatherData) return undefined;
 	return (
 		Math.round(
 			((weatherData.daily.temperature_2m_max[index] +
@@ -44,17 +43,10 @@ export const averageTemp = (index: number, weatherData: GetWeatherResponse) => {
 
 export const getIcon = (index: number, weatherData: GetWeatherResponse) => {
 	const weatherCode = weatherData.daily.weather_code[index];
-	console.log(
-		"weatherConditions[weatherCode as number].icon: ",
-		weatherConditions[weatherCode as number].icon
-	);
-	return weatherConditions[Number(weatherCode)].icon || "sunIcon";
+	return weatherConditions[Number(weatherCode)].icon;
 };
 
 export const getDescription = (index: number, weatherData: GetWeatherResponse) => {
-	if (weatherData) {
-		const condition = weatherData.daily.weather_code[index];
-		return weatherConditions[condition as number].description;
-	}
-	return "";
+	const condition = weatherData.daily.weather_code[index];
+	return weatherConditions[Number(condition)].description;
 };
