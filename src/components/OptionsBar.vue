@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref, watch, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import WeatherDisplay from "./WeatherDisplay.vue";
 import { geocoding } from "../services/openMateo";
+import { GeoCodingResponse } from "@/types/OpenMateo.types";
 
 const city = ref("");
-const data = ref(null);
+const data = ref<GeoCodingResponse | null>(null);
 const latitude = ref<number | null>(null);
 const longitude = ref<number | null>(null);
 
@@ -13,15 +14,18 @@ const fetchLocationData = async (newCity: string) => {
 
 	try {
 		const data = await geocoding(newCity);
-		console.log("data: ", data);
 
-		if (data.results && data.results.length > 0) {
+		if (isLatAndLongExisting(data)) {
 			latitude.value = data.results[0].latitude;
 			longitude.value = data.results[0].longitude;
 		}
 	} catch (error) {
 		console.error(error);
 	}
+};
+
+const isLatAndLongExisting = (data: GeoCodingResponse) => {
+	return data.results.length > 0;
 };
 
 onMounted(() => {

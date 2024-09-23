@@ -1,4 +1,4 @@
-export interface geoCodingResponse {
+export interface GeoCodingResponse {
 	genrationtime_ms: number;
 	results: GeoCodingResult[];
 }
@@ -41,7 +41,7 @@ interface Current {
 	time: string;
 }
 
-interface Daily {
+export interface Daily {
 	rain_sum: number[];
 	sunrise: string[];
 	sunset: string[];
