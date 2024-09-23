@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import arrowUp from "../assets/images/arrowUp.svg";
-import arrowDown from "../assets/images/arrowDown.svg";
-import sunIcon from "../assets/images/sunIcon.svg";
-import rainIcon from "../assets/images/rainIcon.svg";
-import windIcon from "../assets/images/windIcon.svg";
+import arrowUp from "../assets/icons/arrowUp.svg";
+import arrowDown from "../assets/icons/arrowDown.svg";
+import sunIcon from "../assets/icons/sunIcon.svg";
+import rainIcon from "../assets/icons/rainIcon.svg";
+import windIcon from "../assets/icons/windIcon.svg";
 import {
 	averageTemp,
 	formatDate,
@@ -13,7 +13,7 @@ import {
 	getSunset,
 	getWeekday,
 } from "@/services/weatherFunctions";
-import { GetWeatherResponse } from "@/types/OpenMateo.types";
+import { GetWeatherResponse } from "../types/openMateo.types";
 
 const props = defineProps<{
 	time: string;
@@ -27,7 +27,7 @@ const props = defineProps<{
 		<div class="upper-wrapper">
 			<img
 				class="weather-icon"
-				:src="getIcon(index, weatherData)"
+				:src="`src/assets/icons/${getIcon(index, weatherData)}.svg`"
 				:alt="getDescription(index, weatherData)"
 			/>
 			<div class="short-info-wrapper">

@@ -1,4 +1,4 @@
-import { GetWeatherResponse } from "@/types/OpenMateo.types";
+import { GetWeatherResponse } from "../types/openMateo.types";
 import { weatherConditions } from "./weatherCodeObject";
 
 export const formatTime = (isoDate: string) => {
@@ -43,11 +43,12 @@ export const averageTemp = (index: number, weatherData: GetWeatherResponse) => {
 };
 
 export const getIcon = (index: number, weatherData: GetWeatherResponse) => {
-	if (weatherData) {
-		const condition = weatherData.daily.weather_code[index];
-		return weatherConditions[condition as number].icon;
-	}
-	return "";
+	const weatherCode = weatherData.daily.weather_code[index];
+	console.log(
+		"weatherConditions[weatherCode as number].icon: ",
+		weatherConditions[weatherCode as number].icon
+	);
+	return weatherConditions[Number(weatherCode)].icon || "sunIcon";
 };
 
 export const getDescription = (index: number, weatherData: GetWeatherResponse) => {
