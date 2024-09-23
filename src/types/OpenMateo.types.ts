@@ -41,7 +41,7 @@ interface Current {
 	time: string;
 }
 
-export interface Daily {
+interface Daily {
 	rain_sum: number[];
 	sunrise: string[];
 	sunset: string[];

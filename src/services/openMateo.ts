@@ -22,8 +22,13 @@ export const geocoding = async (city: string) => {
  * `GetWeatherResponse` type.
  */
 export const getWeather = async (lat: number, lon: number) => {
-	const res = await axios.get<GetWeatherResponse>(
-		`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=is_day&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,rain_sum,wind_speed_10m_max&timezone=auto`
-	);
-	return res.data;
+	try {
+		const res = await axios.get<GetWeatherResponse>(
+			`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=is_day&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,rain_sum,wind_speed_10m_max&timezone=auto`
+		);
+		return res.data;
+	} catch (error) {
+		console.error("Error fetching weather data:", error);
+		return null;
+	}
 };

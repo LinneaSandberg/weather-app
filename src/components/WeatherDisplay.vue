@@ -1,42 +1,28 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
 import { getWeather } from "../services/openMateo";
-import arrowUp from "../assets/images/arrowUp.svg";
-import arrowDown from "../assets/images/arrowDown.svg";
 import WeatherCard from "./WeatherCard.vue";
 import { GetWeatherResponse } from "../types/OpenMateo.types";
-// import { cityAndPositionprops } from "@/types/weather.types";
-import { weatherConditions } from "@/services/weatherCodeObject";
-import {
-	averageTemp,
-	formatDate,
-	getDescription,
-	getIcon,
-	getSunrise,
-	getSunset,
-	getWeekday,
-} from "@/services/weatherFunctions";
 
-const cityAndPositionprops = defineProps({
+const props = defineProps({
 	latitude: Number,
 	longitude: Number,
 	city: String,
 });
 
-const weatherData = ref<GetWeatherResponse | null>(null);
+const weatherData = ref<null | GetWeatherResponse>(null);
 const showAllDays = ref(false);
 
 const fetchWeatherData = async (): Promise<void> => {
-	if (cityAndPositionprops.latitude && cityAndPositionprops.longitude) {
+	if (props.latitude && props.longitude) {
 		try {
-			const data = await getWeather(
-				cityAndPositionprops.latitude,
-				cityAndPositionprops.longitude
-			);
+			const data = await getWeather(props.latitude, props.longitude);
 
 			if (data) {
 				console.log("Weather data: ", data);
 				weatherData.value = data;
+			} else {
+				console.error("Data is empty");
 			}
 		} catch (error) {
 			console.error(error);
@@ -45,7 +31,7 @@ const fetchWeatherData = async (): Promise<void> => {
 };
 
 watch(
-	() => [cityAndPositionprops.latitude, cityAndPositionprops.longitude],
+	() => [props.latitude, props.longitude],
 	([newLatitude, newLongitude], [oldLatitude, oldLongitude]) => {
 		if (newLatitude !== oldLatitude || newLongitude !== oldLongitude) {
 			fetchWeatherData();
@@ -74,19 +60,8 @@ onMounted(() => {
 					: [weatherData.daily.time[0]]"
 				:key="index"
 				:time="time"
+				:weatherData="weatherData"
 				:index="index"
-				:getIcon="getIcon(index, weatherData)"
-				:getDescription="getDescription(index, weatherData)"
-				:weekday="getWeekday(time)"
-				:formattedDate="formatDate(time)"
-				:midTemp="averageTemp(index, weatherData)"
-				:rainSum="weatherData.daily.rain_sum[index]"
-				:sunrise="getSunrise(index, weatherData)"
-				:sunset="getSunset(index, weatherData)"
-				:windSpeedMax="weatherData.daily.wind_speed_10m_max[index]"
-				:arrowUp="arrowUp"
-				:arrowDown="arrowDown"
-				class="card"
 			>
 			</WeatherCard>
 		</div>
