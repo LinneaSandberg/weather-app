@@ -1,9 +1,9 @@
+import moment from "moment";
 import { GetWeatherResponse } from "../types/openMateo.types";
 import { weatherConditions } from "./weatherCodeObject";
 
 export const formatTime = (isoDate: string) => {
-	const getTime = isoDate.split("T")[1];
-	return getTime.slice(0, 5);
+	return moment(isoDate).format("HH:mm");
 };
 
 export const getSunrise = (index: number, weatherData: GetWeatherResponse) => {
