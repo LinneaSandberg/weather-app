@@ -12,7 +12,7 @@ import {
 	getSunrise,
 	getSunset,
 	getWeekday,
-} from "@/services/weatherFunctions";
+} from "../services/weatherFunctions/weatherFunctions";
 import { GetWeatherResponse } from "../types/openMateo.types";
 
 const props = defineProps<{

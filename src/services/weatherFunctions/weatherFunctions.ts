@@ -1,6 +1,6 @@
 import moment from "moment";
-import { GetWeatherResponse } from "../types/openMateo.types";
-import { weatherConditions } from "./weatherCodeObject";
+import { GetWeatherResponse } from "../../types/openMateo.types";
+import { weatherConditions } from "../weatherCodeObject";
 
 export const formatTime = (isoDate: string) => {
 	return moment(isoDate).format("HH:mm");
@@ -31,6 +31,15 @@ export const formatDate = (dateString: string) => {
 };
 
 export const averageTemp = (index: number, weatherData: GetWeatherResponse) => {
+	if (!weatherData) return;
+
+	if (
+		weatherData.daily.temperature_2m_max[index] === null ||
+		weatherData.daily.temperature_2m_min[index] === null
+	) {
+		return undefined;
+	}
+
 	return (
 		Math.round(
 			((weatherData.daily.temperature_2m_max[index] +

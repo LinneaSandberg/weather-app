@@ -23,9 +23,9 @@ interface GeoCodingResult {
 
 export interface GetWeatherResponse {
 	current: Current;
-	urrent_units: Current;
+	// urrent_units: Current;
 	daily: Daily;
-	daily_units: Daily;
+	// daily_units: Daily;
 	elevation: number;
 	generationtime: number;
 	latitude: number;
@@ -36,9 +36,9 @@ export interface GetWeatherResponse {
 }
 
 interface Current {
-	interval: number | string;
-	is_day: number;
-	time: string;
+	interval?: number | string;
+	is_day?: number;
+	time?: string;
 }
 
 interface Daily {
