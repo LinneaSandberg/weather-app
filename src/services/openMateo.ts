@@ -1,4 +1,4 @@
-import { GeoCodingResponse, GetWeatherResponse } from "../types/openMateo.types";
+import { GeoCodingResponse, GetWeatherResponse } from "src/types/openMateo.types";
 import axios from "axios";
 
 export const geocoding = async (city: string) => {
