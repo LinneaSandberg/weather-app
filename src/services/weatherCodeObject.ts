@@ -1,4 +1,4 @@
-import { WeatherConditions } from "@/types/weather.types";
+import { WeatherConditions } from "../types/weather.types";
 
 export const weatherConditions: WeatherConditions = {
 	0: { description: "Clear sky", icon: "sunIcon" },
