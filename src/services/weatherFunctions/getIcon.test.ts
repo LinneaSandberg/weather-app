@@ -1,4 +1,3 @@
-import { GetWeatherResponse } from "../../types/openMateo.types";
 import { getIcon } from "./weatherFunctions";
 import { weatherConditions } from "../weatherCodeObject";
 
