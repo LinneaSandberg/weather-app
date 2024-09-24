@@ -1,8 +1,3 @@
-// const averageTemp = require("./weatherFunctions").averageTemp;
-
-// test("averageTemp returns the average of the max and min temperatures", () => {
-// 	expect(averageTemp(2, 4).toBe(3));
-// });
 import { GetWeatherResponse } from "@/types/openMateo.types";
 import { averageTemp } from "./weatherFunctions";
 
@@ -54,6 +49,7 @@ describe("averageTemp", () => {
 		const weatherData = mockData;
 		const result = averageTemp(index, weatherData);
 
+		// skriv om resultatet till mockdata
 		expect(result).toBe(2.5);
 	});
 
