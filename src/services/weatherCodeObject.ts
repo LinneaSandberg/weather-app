@@ -1,4 +1,4 @@
-import { WeatherConditions } from "../types/weather.types";
+import { WeatherConditions } from "../types/weather";
 import { weatherIcons } from "../enum/weatherEnum";
 
 export const weatherConditions: WeatherConditions = {
