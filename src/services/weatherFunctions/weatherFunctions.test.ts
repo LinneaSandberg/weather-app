@@ -36,7 +36,7 @@ describe("getIcon", () => {
 				"snowIcon",
 			];
 
-			getIcon_mockdata.daily.weather_code.forEach((_, index): any => {
+			getIcon_mockdata.daily.weather_code.forEach((_, index) => {
 				const icon = getIcon(index, getIcon_mockdata);
 				expect(icon).toBe(expectedIcons[index]);
 			});
