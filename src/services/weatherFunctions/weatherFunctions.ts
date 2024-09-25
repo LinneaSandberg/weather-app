@@ -1,5 +1,5 @@
 import moment from "moment";
-import { GetWeatherResponse } from "../../types/openMateo.types";
+import { GetWeatherResponse } from "@/types/openMateo.types";
 import { weatherConditions } from "../weatherCodeObject";
 
 export const formatTime = (isoDate: string) => {
