@@ -1,4 +1,4 @@
-import { GetWeatherResponse } from "@/types/openMateo.types";
+import { GetWeatherResponse } from "@/types/openMateo";
 
 export const averageTemp_Mockdata: GetWeatherResponse = {
 	current: {},

@@ -2,7 +2,7 @@
 import { ref, onMounted } from "vue";
 import WeatherDisplay from "./WeatherDisplay.vue";
 import { geocoding } from "../services/openMateo";
-import { GeoCodingResponse } from "../types/openMateo.types";
+import { GeoCodingResponse } from "../types/openMateo";
 
 const city = ref("");
 const data = ref<GeoCodingResponse | null>(null);

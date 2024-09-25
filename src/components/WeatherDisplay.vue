@@ -2,7 +2,7 @@
 import { onMounted, ref, watch } from "vue";
 import { getWeather } from "../services/openMateo";
 import WeatherCard from "./WeatherCard.vue";
-import { GetWeatherResponse } from "../types/openMateo.types";
+import { GetWeatherResponse } from "../types/openMateo";
 
 const props = defineProps({
 	latitude: Number,

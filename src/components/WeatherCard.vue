@@ -13,7 +13,7 @@ import {
 	getSunset,
 	getWeekday,
 } from "../services/weatherFunctions/weatherFunctions";
-import { GetWeatherResponse } from "../types/openMateo.types";
+import { GetWeatherResponse } from "../types/openMateo";
 
 const props = defineProps<{
 	time: string;
