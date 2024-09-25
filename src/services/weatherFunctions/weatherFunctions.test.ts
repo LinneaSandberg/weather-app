@@ -1,3 +1,4 @@
+import { promises } from "dns";
 import {
 	averageTemp_badMockdata,
 	averageTemp_Mockdata,
@@ -36,7 +37,7 @@ describe("getIcon", () => {
 				"snowIcon",
 			];
 
-			getIcon_mockdata.daily.weather_code.forEach((code, index) => {
+			getIcon_mockdata.daily.weather_code.forEach((code, index): any => {
 				const icon = getIcon(index, getIcon_mockdata);
 				expect(icon).toBe(expectedIcons[index]);
 			});
