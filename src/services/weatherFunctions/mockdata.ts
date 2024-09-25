@@ -53,7 +53,7 @@ export const getIcon_mockdata: GetWeatherResponse = {
 		sunset: [],
 		rain_sum: [],
 		time: [],
-		weather_code: [1, 2, 51, 61, 71, 85],
+		weather_code: [1, 48, 51, 61, 71, 85],
 		wind_speed_10m_max: [],
 	},
 	elevation: 0,
