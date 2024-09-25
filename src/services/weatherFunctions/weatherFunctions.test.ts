@@ -38,7 +38,7 @@ describe("getIcon", () => {
 
 			getIcon_mockdata.daily.weather_code.forEach((_: any, index: number) => {
 				const icon = getIcon(index, getIcon_mockdata);
-				expect(icon).toBe(expectedIcons[index]);
+				expect(icon).toBe(expectedIcons[index] as string);
 			});
 		});
 	});
