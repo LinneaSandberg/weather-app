@@ -1,5 +1,3 @@
-import { GetWeatherResponse } from "../../types/openMateo.types";
-import { weatherConditions } from "../weatherCodeObject";
 import {
 	averageTemp_badMockdata,
 	averageTemp_Mockdata,

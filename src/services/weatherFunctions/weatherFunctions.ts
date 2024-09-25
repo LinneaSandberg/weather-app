@@ -50,7 +50,7 @@ export const averageTemp = (index: number, weatherData: GetWeatherResponse) => {
 	);
 };
 
-export const getIcon = (index: number, weatherData: GetWeatherResponse) => {
+export const getIcon = (index: number, weatherData: GetWeatherResponse): string => {
 	const weatherCode = weatherData.daily.weather_code[index];
 	return weatherConditions[Number(weatherCode)].icon;
 };
