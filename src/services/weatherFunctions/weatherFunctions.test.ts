@@ -5,7 +5,6 @@ import {
 	getIcon_mockdata,
 } from "./mockdata";
 import { averageTemp, getIcon } from "./weatherFunctions";
-import { GetWeatherResponse } from "../../types/openMateo.types";
 
 describe("averageTemp", () => {
 	test("should return the avrage temperature of the max and min temperature for a day", () => {
