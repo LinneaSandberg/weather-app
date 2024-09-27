@@ -35,7 +35,7 @@ export const formatDate = (dateString: string) => {
 		throw new Error("Invalid date string");
 	}
 
-	return moment(dateString).format("MMM d");
+	return moment(dateString).format("MMM D");
 };
 
 export const averageTemp = (index: number, weatherData: GetWeatherResponse) => {
