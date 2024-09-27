@@ -1,3 +1,4 @@
+import weatherIcons from "../../enum/weatherEnum";
 import { GetWeatherResponse } from "@/types/openMateo";
 
 export const averageTemp_Mockdata: GetWeatherResponse = {
@@ -44,7 +45,7 @@ export const averageTemp_badMockdata: any = {
 	utc_offset_seconds: 0,
 };
 
-export const getIcon_mockdata: GetWeatherResponse = {
+export const getWeatherCodes_mockdata: GetWeatherResponse = {
 	current: {},
 	daily: {
 		temperature_2m_max: [],
@@ -186,4 +187,70 @@ export const getWeekday_mockdata = [
 	{ dateString: "2024-09-25", expectedWeekday: "Wednesday" },
 	{ dateString: "2024-09-26", expectedWeekday: "Thursday" },
 	{ dateString: "2024-09-27", expectedWeekday: "Friday" },
+];
+
+export const getIcon_mockdata = [
+	{
+		dayIndex: 0,
+		weatherData: getWeatherCodes_mockdata.daily.weather_code,
+		expectedIcon: weatherIcons.SUN,
+	},
+	{
+		dayIndex: 1,
+		weatherData: getWeatherCodes_mockdata.daily.weather_code,
+		expectedIcon: weatherIcons.CLOUD,
+	},
+	{
+		dayIndex: 2,
+		weatherData: getWeatherCodes_mockdata.daily.weather_code,
+		expectedIcon: weatherIcons.WIND,
+	},
+	{
+		dayIndex: 3,
+		weatherData: getWeatherCodes_mockdata.daily.weather_code,
+		expectedIcon: weatherIcons.RAIN,
+	},
+	{
+		dayIndex: 4,
+		weatherData: getWeatherCodes_mockdata.daily.weather_code,
+		expectedIcon: weatherIcons.STORM,
+	},
+	{
+		dayIndex: 5,
+		weatherData: getWeatherCodes_mockdata.daily.weather_code,
+		expectedIcon: weatherIcons.SNOW,
+	},
+];
+
+export const getDescription_mockdata = [
+	{
+		dayIndex: 0,
+		weatherData: getWeatherCodes_mockdata.daily.weather_code,
+		expectedDescription: "Mainly clear",
+	},
+	{
+		dayIndex: 1,
+		weatherData: getWeatherCodes_mockdata.daily.weather_code,
+		expectedDescription: "Depositing rime fog",
+	},
+	{
+		dayIndex: 2,
+		weatherData: getWeatherCodes_mockdata.daily.weather_code,
+		expectedDescription: "Drizzle: Light intensity",
+	},
+	{
+		dayIndex: 3,
+		weatherData: getWeatherCodes_mockdata.daily.weather_code,
+		expectedDescription: "Rain: Slight intensity",
+	},
+	{
+		dayIndex: 4,
+		weatherData: getWeatherCodes_mockdata.daily.weather_code,
+		expectedDescription: "Snow fall: Slight intensity",
+	},
+	{
+		dayIndex: 5,
+		weatherData: getWeatherCodes_mockdata.daily.weather_code,
+		expectedDescription: "Snow showers: Slight intensity",
+	},
 ];

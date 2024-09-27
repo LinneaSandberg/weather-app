@@ -11,14 +11,10 @@ export const formatTime = (isoDate: string) => {
 };
 
 export const getSunrise = (index: number, weatherData: GetWeatherResponse) => {
-	if (!weatherData) return;
-
 	return formatTime(weatherData.daily.sunrise[index]);
 };
 
 export const getSunset = (index: number, weatherData: GetWeatherResponse) => {
-	if (!weatherData) return;
-
 	return formatTime(weatherData.daily.sunset[index]);
 };
 
@@ -39,8 +35,6 @@ export const formatDate = (dateString: string) => {
 };
 
 export const averageTemp = (index: number, weatherData: GetWeatherResponse) => {
-	if (!weatherData) return;
-
 	if (
 		weatherData.daily.temperature_2m_max[index] === null ||
 		weatherData.daily.temperature_2m_min[index] === null

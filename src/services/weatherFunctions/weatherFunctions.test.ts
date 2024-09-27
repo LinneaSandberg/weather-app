@@ -4,24 +4,26 @@ import {
 	dateString_mockdata,
 	expectedAverageTemp,
 	formatTime_mockdata,
+	getDescription_mockdata,
 	getIcon_badMockdata,
 	getIcon_emptyMockdata,
 	getIcon_mockdata,
 	getSunrise_mockdata,
 	getSunriseAndSunset_Mockdata,
 	getSunset_mockdata,
+	getWeatherCodes_mockdata,
 	getWeekday_mockdata,
 } from "./mockdata";
 import {
 	averageTemp,
 	formatDate,
 	formatTime,
+	getDescription,
 	getIcon,
 	getSunrise,
 	getSunset,
 	getWeekday,
 } from "./weatherFunctions";
-import weatherIcons from "../../enum/weatherEnum";
 
 // formatTime
 describe("formatTime", () => {
@@ -32,11 +34,11 @@ describe("formatTime", () => {
 	});
 
 	test("should throw an error if invalid string is passed", () => {
-		expect(() => formatTime("invalid string")).toThrow();
+		expect(() => formatTime("invalid string")).toThrow("Invalid date string");
 	});
 
 	test("should throw an error if empty string is passed", () => {
-		expect(() => formatTime("")).toThrow();
+		expect(() => formatTime("")).toThrow("Invalid date string");
 	});
 });
 
@@ -67,11 +69,11 @@ describe("getWeekday", () => {
 	});
 
 	test("should throw an error if invalid string is passed", () => {
-		expect(() => getWeekday("invalid string")).toThrow();
+		expect(() => getWeekday("invalid string")).toThrow("Invalid date string");
 	});
 
 	test("should throw an error if empty string is passed", () => {
-		expect(() => getWeekday("")).toThrow();
+		expect(() => getWeekday("")).toThrow("Invalid date string");
 	});
 });
 
@@ -84,11 +86,11 @@ describe("formatDate", () => {
 	});
 
 	test("should throw an error if invalid string is passed", () => {
-		expect(() => formatDate("invalid string")).toThrow();
+		expect(() => formatDate("invalid string")).toThrow("Invalid date string");
 	});
 
 	test("should throw an error if empty string is passed", () => {
-		expect(() => formatDate("")).toThrow();
+		expect(() => formatDate("")).toThrow("Invalid date string");
 	});
 });
 
@@ -114,47 +116,14 @@ describe("averageTemp", () => {
 // getIcon
 describe("getIcon", () => {
 	test("should return the correct icon for all given weather codes", () => {
-		const mockdata = [
-			{
-				dayIndex: 0,
-				weatherData: getIcon_mockdata.daily.weather_code,
-				expectedIcon: weatherIcons.SUN,
-			},
-			{
-				dayIndex: 1,
-				weatherData: getIcon_mockdata.daily.weather_code,
-				expectedIcon: weatherIcons.CLOUD,
-			},
-			{
-				dayIndex: 2,
-				weatherData: getIcon_mockdata.daily.weather_code,
-				expectedIcon: weatherIcons.WIND,
-			},
-			{
-				dayIndex: 3,
-				weatherData: getIcon_mockdata.daily.weather_code,
-				expectedIcon: weatherIcons.RAIN,
-			},
-			{
-				dayIndex: 4,
-				weatherData: getIcon_mockdata.daily.weather_code,
-				expectedIcon: weatherIcons.STORM,
-			},
-			{
-				dayIndex: 5,
-				weatherData: getIcon_mockdata.daily.weather_code,
-				expectedIcon: weatherIcons.SNOW,
-			},
-		];
-
-		mockdata.forEach((data) => {
-			const icon = getIcon(data.dayIndex, getIcon_mockdata);
+		getIcon_mockdata.forEach((data) => {
+			const icon = getIcon(data.dayIndex, getWeatherCodes_mockdata);
 			expect(icon).toBe(data.expectedIcon);
 		});
 	});
 
 	test("if unexisting dayIndex", () => {
-		expect(() => getIcon(-1, getIcon_mockdata)).toThrow();
+		expect(() => getIcon(-1, getWeatherCodes_mockdata)).toThrow();
 	});
 
 	test("if weather_code is nonexisting", () => {
@@ -172,5 +141,20 @@ describe("getIcon", () => {
 
 // getDescription
 describe("getDescription", () => {
-	
+	test("should return the correct description for all given weather codes", () => {
+		getDescription_mockdata.forEach((data) => {
+			const description = getDescription(data.dayIndex, getWeatherCodes_mockdata);
+			expect(description).toBe(data.expectedDescription);
+		});
+	});
+
+	test("if unexisting dayIndex", () => {
+		expect(() => getDescription(-1, getWeatherCodes_mockdata)).toThrow();
+	});
+
+	test("if weatherData is empty", () => {
+		getIcon_emptyMockdata.daily.weather_code.forEach((_: any, index: number) => {
+			expect(() => getDescription(index, getIcon_emptyMockdata)).toBeUndefined();
+		});
+	});
 });
