@@ -7,15 +7,15 @@ export const formatTime = (isoDate: string) => {
 };
 
 export const getSunrise = (index: number, weatherData: GetWeatherResponse) => {
-	if (weatherData) {
-		return formatTime(weatherData.daily.sunrise[index]);
-	}
+	if (!weatherData) return;
+
+	return formatTime(weatherData.daily.sunrise[index]);
 };
 
 export const getSunset = (index: number, weatherData: GetWeatherResponse) => {
-	if (weatherData) {
-		return formatTime(weatherData.daily.sunset[index]);
-	}
+	if (!weatherData) return;
+
+	return formatTime(weatherData.daily.sunset[index]);
 };
 
 export const getWeekday = (dateString: string) => {

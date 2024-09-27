@@ -18,6 +18,8 @@ const fetchWeatherData = async (): Promise<void> => {
 		try {
 			const data = await getWeather(props.latitude, props.longitude);
 
+			console.log("data: ", data);
+
 			if (!data) {
 				console.error("Data is empty");
 				return;

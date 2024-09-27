@@ -107,19 +107,19 @@ export const getIcon_emptyMockdata: GetWeatherResponse = {
 	utc_offset_seconds: 0,
 };
 
-export const dateString_mockdata = {
-	1: { dateString: "2022-07-01T00:00", expectedDate: "Jul 1" },
-	2: { dateString: "2022-08-01T01:00", expectedDate: "Aug 1" },
-	3: { dateString: "2022-09-01T02:00", expectedDate: "Sep 1" },
-	4: { dateString: "2022-10-01T03:00", expectedDate: "Oct 1" },
-	5: { dateString: "2022-11-01T04:00", expectedDate: "Nov 1" },
-	6: { dateString: "2022-12-01T05:00", expectedDate: "Dec 1" },
-	7: { dateString: "2022-01-01T06:00", expectedDate: "Jan 1" },
-};
+export const dateString_mockdata = [
+	{ dateString: "2022-07-01T00:00", expectedDate: "Jul 1" },
+	{ dateString: "2022-08-01T01:00", expectedDate: "Aug 1" },
+	{ dateString: "2022-09-01T02:00", expectedDate: "Sep 1" },
+	{ dateString: "2022-10-01T03:00", expectedDate: "Oct 1" },
+	{ dateString: "2022-11-01T04:00", expectedDate: "Nov 1" },
+	{ dateString: "2022-12-01T05:00", expectedDate: "Dec 1" },
+	{ dateString: "2022-01-01T06:00", expectedDate: "Jan 1" },
+];
 
-export const invalidDateString_mockdata = {
-	1: { dateString: "2022-1010-0100T03:00" },
-	2: { dateString: "20212-11-01T04:0110" },
-	3: { dateString: "2022-12-01T72:00" },
-	4: { dateString: "2022-13-22T06:00" },
-};
+export const formatTime_mockdata = [
+	{ isoDate: "2022-07-01T00:00", expectedTime: "00:00" },
+	{ isoDate: "2022-08-01T01:30", expectedTime: "01:30" },
+	{ isoDate: "2024-09-27T13:30", expectedTime: "13:30" },
+	{ isoDate: "2025-10-28T23:59", expectedTime: "23:59" },
+];

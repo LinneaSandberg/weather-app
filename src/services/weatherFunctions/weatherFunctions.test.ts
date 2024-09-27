@@ -3,15 +3,47 @@ import {
 	averageTemp_Mockdata,
 	dateString_mockdata,
 	expectedAverageTemp,
+	formatTime_mockdata,
 	getIcon_badMockdata,
 	getIcon_emptyMockdata,
 	getIcon_mockdata,
-	invalidDateString_mockdata,
 } from "./mockdata";
-import { averageTemp, formatDate, getIcon } from "./weatherFunctions";
+import { averageTemp, formatDate, formatTime, getIcon } from "./weatherFunctions";
 import weatherIcons from "../../enum/weatherEnum";
-import exp from "constants";
 
+// formatTime
+describe("formatTime", () => {
+	test("should return the correct time format", () => {
+		formatTime_mockdata.forEach((data) => {
+			expect(formatTime(data.isoDate)).toBe(data.expectedTime);
+		});
+	});
+});
+
+// getSunrise
+
+// getSunset
+
+// getWeekday
+
+// formatDate
+describe("formatDate", () => {
+	test("should return the correct date format", () => {
+		dateString_mockdata.forEach((data) => {
+			expect(formatDate(data.dateString)).toBe(data.expectedDate);
+		});
+	});
+
+	test("should throw an error if invalid string is passed", () => {
+		expect(() => formatDate("invalid string")).toThrow();
+	});
+
+	test("should throw an error if empty string is passed", () => {
+		expect(() => formatDate("")).toThrow();
+	});
+});
+
+// averageTemp
 describe("averageTemp", () => {
 	test("should return the avrage temperature of the max and min temperature for a day", () => {
 		const index = 2;
@@ -30,6 +62,7 @@ describe("averageTemp", () => {
 	});
 });
 
+// getIcon
 describe("getIcon", () => {
 	test("should return the correct icon for all given weather codes", () => {
 		const mockdata = [
@@ -88,33 +121,4 @@ describe("getIcon", () => {
 	});
 });
 
-describe("formatDate", () => {
-	test("should return the correct date format", () => {
-		expect(formatDate(dateString_mockdata[1].dateString)).toBe(
-			dateString_mockdata[1].expectedDate
-		);
-		expect(formatDate(dateString_mockdata[2].dateString)).toBe(
-			dateString_mockdata[2].expectedDate
-		);
-		expect(formatDate(dateString_mockdata[3].dateString)).toBe(
-			dateString_mockdata[3].expectedDate
-		);
-		expect(formatDate(dateString_mockdata[4].dateString)).toBe(
-			dateString_mockdata[4].expectedDate
-		);
-		expect(formatDate(dateString_mockdata[5].dateString)).toBe(
-			dateString_mockdata[5].expectedDate
-		);
-		expect(formatDate(dateString_mockdata[6].dateString)).toBe(
-			dateString_mockdata[6].expectedDate
-		);
-	});
-
-	test("should throw an error if invalid string is passed", () => {
-		expect(() => formatDate("invalid string")).toThrow();
-	});
-
-	test("should throw an error if empty string is passed", () => {
-		expect(() => formatDate("")).toThrow();
-	});
-});
+// getDescription
