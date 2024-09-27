@@ -180,3 +180,10 @@ export const getSunset_mockdata = [
 	{ index: 5, expectedTime: "19:13" },
 	{ index: 6, expectedTime: "19:15" },
 ];
+
+export const getWeekday_mockdata = [
+	{ dateString: "2024-09-24", expectedWeekday: "Tuesday" },
+	{ dateString: "2024-09-25", expectedWeekday: "Wednesday" },
+	{ dateString: "2024-09-26", expectedWeekday: "Thursday" },
+	{ dateString: "2024-09-27", expectedWeekday: "Friday" },
+];

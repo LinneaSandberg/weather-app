@@ -10,6 +10,7 @@ import {
 	getSunrise_mockdata,
 	getSunriseAndSunset_Mockdata,
 	getSunset_mockdata,
+	getWeekday_mockdata,
 } from "./mockdata";
 import {
 	averageTemp,
@@ -18,6 +19,7 @@ import {
 	getIcon,
 	getSunrise,
 	getSunset,
+	getWeekday,
 } from "./weatherFunctions";
 import weatherIcons from "../../enum/weatherEnum";
 
@@ -57,6 +59,21 @@ describe("getSunset", () => {
 });
 
 // getWeekday
+describe("getWeekday", () => {
+	getWeekday_mockdata.forEach((data) => {
+		test("should return the right weekday from a datestring", () => {
+			expect(getWeekday(data.dateString)).toBe(data.expectedWeekday);
+		});
+	});
+
+	test("should throw an error if invalid string is passed", () => {
+		expect(() => getWeekday("invalid string")).toThrow();
+	});
+
+	test("should throw an error if empty string is passed", () => {
+		expect(() => getWeekday("")).toThrow();
+	});
+});
 
 // formatDate
 describe("formatDate", () => {

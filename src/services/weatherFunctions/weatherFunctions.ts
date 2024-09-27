@@ -23,15 +23,19 @@ export const getSunset = (index: number, weatherData: GetWeatherResponse) => {
 };
 
 export const getWeekday = (dateString: string) => {
-	const date = new Date(dateString);
-	const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	return weekdays[date.getDay()];
+	if (!moment(dateString).isValid()) {
+		throw new Error("Invalid date string");
+	}
+
+	return moment(dateString).format("dddd");
 };
 
 export const formatDate = (dateString: string) => {
-	const date = new Date(dateString);
-	const options: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" };
-	return new Intl.DateTimeFormat("en-US", options).format(date);
+	if (!moment(dateString).isValid()) {
+		throw new Error("Invalid date string");
+	}
+
+	return moment(dateString).format("MMM d");
 };
 
 export const averageTemp = (index: number, weatherData: GetWeatherResponse) => {
