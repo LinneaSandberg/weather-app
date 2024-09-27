@@ -1,5 +1,5 @@
 import { WeatherConditions } from "../types/weather";
-import { weatherIcons } from "../enum/weatherEnum";
+import weatherIcons from "../enum/weatherEnum";
 
 export const weatherConditions: WeatherConditions = {
 	0: { description: "Clear sky", icon: weatherIcons.SUN },

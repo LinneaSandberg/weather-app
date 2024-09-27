@@ -1,4 +1,4 @@
-export enum weatherIcons {
+enum weatherIcons {
 	SUN = "sunIcon",
 	CLOUD = "cloudIcon",
 	WIND = "windIcon",
@@ -6,3 +6,5 @@ export enum weatherIcons {
 	STORM = "stormIcon",
 	SNOW = "snowIcon",
 }
+
+export default weatherIcons;

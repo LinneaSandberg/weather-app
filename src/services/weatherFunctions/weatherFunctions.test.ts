@@ -2,9 +2,13 @@ import {
 	averageTemp_badMockdata,
 	averageTemp_Mockdata,
 	expectedAverageTemp,
+	getIcon_badMockdata,
+	getIcon_emptyMockdata,
 	getIcon_mockdata,
 } from "./mockdata";
 import { averageTemp, getIcon } from "./weatherFunctions";
+import weatherIcons from "../../enum/weatherEnum";
+import exp from "constants";
 
 describe("averageTemp", () => {
 	test("should return the avrage temperature of the max and min temperature for a day", () => {
@@ -25,21 +29,35 @@ describe("averageTemp", () => {
 });
 
 describe("getIcon", () => {
-	describe("getIcon", () => {
-		test("should return the correct icon for all given weather codes", () => {
-			const expectedIcons = [
-				"sunIcon",
-				"cloudIcon",
-				"windIcon",
-				"rainIcon",
-				"stormIcon",
-				"snowIcon",
-			];
+	test("should return the correct icon for all given weather codes", () => {
+		const expectedIcons = [
+			weatherIcons.SUN,
+			weatherIcons.CLOUD,
+			weatherIcons.WIND,
+			weatherIcons.RAIN,
+			weatherIcons.STORM,
+			weatherIcons.SNOW,
+		];
 
-			getIcon_mockdata.daily.weather_code.forEach((_: any, index: number) => {
-				const icon = getIcon(index, getIcon_mockdata);
-				expect(icon).toBe(expectedIcons[index] as string);
-			});
+		getIcon_mockdata.daily.weather_code.forEach((_: any, index: number) => {
+			const icon = getIcon(index, getIcon_mockdata);
+			expect(icon).toBe(expectedIcons[index] as string);
+		});
+	});
+
+	test("if unexisting dayIndex", () => {
+		expect(() => getIcon(-1, getIcon_mockdata)).toThrow();
+	});
+
+	test("if weather_code is nonexisting", () => {
+		getIcon_badMockdata.daily.weather_code.forEach((_: any, index: number) => {
+			expect(() => getIcon(index, getIcon_badMockdata)).toThrow();
+		});
+	});
+
+	test("if weatherData is empty", () => {
+		getIcon_emptyMockdata.daily.weather_code.forEach((_: any, index: number) => {
+			expect(() => getIcon(index, getIcon_emptyMockdata)).toBeUndefined();
 		});
 	});
 });
