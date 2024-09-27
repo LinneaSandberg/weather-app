@@ -18,6 +18,14 @@ describe("formatTime", () => {
 			expect(formatTime(data.isoDate)).toBe(data.expectedTime);
 		});
 	});
+
+	test("should throw an error if invalid string is passed", () => {
+		expect(() => formatTime("invalid string")).toThrow();
+	});
+
+	test("should throw an error if empty string is passed", () => {
+		expect(() => formatTime("")).toThrow();
+	});
 });
 
 // getSunrise

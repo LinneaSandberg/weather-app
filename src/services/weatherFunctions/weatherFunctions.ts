@@ -3,6 +3,10 @@ import { GetWeatherResponse } from "@/types/openMateo";
 import { weatherConditions } from "../weatherCodeObject";
 
 export const formatTime = (isoDate: string) => {
+	if (!moment(isoDate).isValid()) {
+		throw new Error("Invalid date string");
+	}
+
 	return moment(isoDate).format("HH:mm");
 };
 
