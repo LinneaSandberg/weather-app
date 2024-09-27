@@ -7,8 +7,18 @@ import {
 	getIcon_badMockdata,
 	getIcon_emptyMockdata,
 	getIcon_mockdata,
+	getSunrise_mockdata,
+	getSunriseAndSunset_Mockdata,
+	getSunset_mockdata,
 } from "./mockdata";
-import { averageTemp, formatDate, formatTime, getIcon } from "./weatherFunctions";
+import {
+	averageTemp,
+	formatDate,
+	formatTime,
+	getIcon,
+	getSunrise,
+	getSunset,
+} from "./weatherFunctions";
 import weatherIcons from "../../enum/weatherEnum";
 
 // formatTime
@@ -29,8 +39,22 @@ describe("formatTime", () => {
 });
 
 // getSunrise
+describe("getSunrise", () => {
+	test("should return the correct formatted time for sunrise", () => {
+		getSunrise_mockdata.forEach((data) => {
+			expect(getSunrise(data.index, getSunriseAndSunset_Mockdata)).toBe(data.expectedTime);
+		});
+	});
+});
 
 // getSunset
+describe("getSunset", () => {
+	test("should return the correct formatted time for sunset", () => {
+		getSunset_mockdata.forEach((data) => {
+			expect(getSunset(data.index, getSunriseAndSunset_Mockdata)).toBe(data.expectedTime);
+		});
+	});
+});
 
 // getWeekday
 
