@@ -116,3 +116,10 @@ export const dateString_mockdata = {
 	6: { dateString: "2022-12-01T05:00", expectedDate: "Dec 1" },
 	7: { dateString: "2022-01-01T06:00", expectedDate: "Jan 1" },
 };
+
+export const invalidDateString_mockdata = {
+	1: { dateString: "2022-1010-0100T03:00" },
+	2: { dateString: "20212-11-01T04:0110" },
+	3: { dateString: "2022-12-01T72:00" },
+	4: { dateString: "2022-13-22T06:00" },
+};

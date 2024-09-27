@@ -6,6 +6,7 @@ import {
 	getIcon_badMockdata,
 	getIcon_emptyMockdata,
 	getIcon_mockdata,
+	invalidDateString_mockdata,
 } from "./mockdata";
 import { averageTemp, formatDate, getIcon } from "./weatherFunctions";
 import weatherIcons from "../../enum/weatherEnum";
@@ -88,7 +89,6 @@ describe("getIcon", () => {
 });
 
 describe("formatDate", () => {
-	// should return the correct date format
 	test("should return the correct date format", () => {
 		expect(formatDate(dateString_mockdata[1].dateString)).toBe(
 			dateString_mockdata[1].expectedDate
@@ -110,6 +110,11 @@ describe("formatDate", () => {
 		);
 	});
 
-	// should throw an error if invalid date is passed
-	// should handle empty date
+	test("should throw an error if invalid string is passed", () => {
+		expect(() => formatDate("invalid string")).toThrow();
+	});
+
+	test("should throw an error if empty string is passed", () => {
+		expect(() => formatDate("")).toThrow();
+	});
 });
