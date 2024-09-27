@@ -1,12 +1,13 @@
 import {
 	averageTemp_badMockdata,
 	averageTemp_Mockdata,
+	dateString_mockdata,
 	expectedAverageTemp,
 	getIcon_badMockdata,
 	getIcon_emptyMockdata,
 	getIcon_mockdata,
 } from "./mockdata";
-import { averageTemp, getIcon } from "./weatherFunctions";
+import { averageTemp, formatDate, getIcon } from "./weatherFunctions";
 import weatherIcons from "../../enum/weatherEnum";
 import exp from "constants";
 
@@ -30,18 +31,42 @@ describe("averageTemp", () => {
 
 describe("getIcon", () => {
 	test("should return the correct icon for all given weather codes", () => {
-		const expectedIcons = [
-			weatherIcons.SUN,
-			weatherIcons.CLOUD,
-			weatherIcons.WIND,
-			weatherIcons.RAIN,
-			weatherIcons.STORM,
-			weatherIcons.SNOW,
+		const mockdata = [
+			{
+				dayIndex: 0,
+				weatherData: getIcon_mockdata.daily.weather_code,
+				expectedIcon: weatherIcons.SUN,
+			},
+			{
+				dayIndex: 1,
+				weatherData: getIcon_mockdata.daily.weather_code,
+				expectedIcon: weatherIcons.CLOUD,
+			},
+			{
+				dayIndex: 2,
+				weatherData: getIcon_mockdata.daily.weather_code,
+				expectedIcon: weatherIcons.WIND,
+			},
+			{
+				dayIndex: 3,
+				weatherData: getIcon_mockdata.daily.weather_code,
+				expectedIcon: weatherIcons.RAIN,
+			},
+			{
+				dayIndex: 4,
+				weatherData: getIcon_mockdata.daily.weather_code,
+				expectedIcon: weatherIcons.STORM,
+			},
+			{
+				dayIndex: 5,
+				weatherData: getIcon_mockdata.daily.weather_code,
+				expectedIcon: weatherIcons.SNOW,
+			},
 		];
 
-		getIcon_mockdata.daily.weather_code.forEach((_: any, index: number) => {
-			const icon = getIcon(index, getIcon_mockdata);
-			expect(icon).toBe(expectedIcons[index] as string);
+		mockdata.forEach((data) => {
+			const icon = getIcon(data.dayIndex, getIcon_mockdata);
+			expect(icon).toBe(data.expectedIcon);
 		});
 	});
 
@@ -62,16 +87,29 @@ describe("getIcon", () => {
 	});
 });
 
-// const mockData = [
-// 	{ weatherData: getIcon_mockdata, dayIndex: 1, expectedData: weatherIcons.SUN },
-// 	{ weatherData: getIcon_mockdata, dayIndex: 2, expectedData: weatherIcons.CLOUD },
-// 	{ weatherData: getIcon_mockdata, dayIndex: 3, expectedData: weatherIcons.WIND },
-// 	{ weatherData: getIcon_mockdata, dayIndex: 4, expectedData: weatherIcons.RAIN },
-// 	{ weatherData: getIcon_mockdata, dayIndex: 5, expectedData: weatherIcons.STORM },
-// 	{ weatherData: getIcon_mockdata, dayIndex: 6, expectedData: weatherIcons.SNOW },
-// ] as any[];
+describe("formatDate", () => {
+	// should return the correct date format
+	test("should return the correct date format", () => {
+		expect(formatDate(dateString_mockdata[1].dateString)).toBe(
+			dateString_mockdata[1].expectedDate
+		);
+		expect(formatDate(dateString_mockdata[2].dateString)).toBe(
+			dateString_mockdata[2].expectedDate
+		);
+		expect(formatDate(dateString_mockdata[3].dateString)).toBe(
+			dateString_mockdata[3].expectedDate
+		);
+		expect(formatDate(dateString_mockdata[4].dateString)).toBe(
+			dateString_mockdata[4].expectedDate
+		);
+		expect(formatDate(dateString_mockdata[5].dateString)).toBe(
+			dateString_mockdata[5].expectedDate
+		);
+		expect(formatDate(dateString_mockdata[6].dateString)).toBe(
+			dateString_mockdata[6].expectedDate
+		);
+	});
 
-// mockData.forEach((data) => {
-// 	const icon = getIcon(data.dayIndex, data.weatherData);
-// 	expect(icon).toBe(data.expectedData);
-// });
+	// should throw an error if invalid date is passed
+	// should handle empty date
+});

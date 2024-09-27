@@ -106,3 +106,13 @@ export const getIcon_emptyMockdata: GetWeatherResponse = {
 	timezone_abbreviation: "",
 	utc_offset_seconds: 0,
 };
+
+export const dateString_mockdata = {
+	1: { dateString: "2022-07-01T00:00", expectedDate: "Jul 1" },
+	2: { dateString: "2022-08-01T01:00", expectedDate: "Aug 1" },
+	3: { dateString: "2022-09-01T02:00", expectedDate: "Sep 1" },
+	4: { dateString: "2022-10-01T03:00", expectedDate: "Oct 1" },
+	5: { dateString: "2022-11-01T04:00", expectedDate: "Nov 1" },
+	6: { dateString: "2022-12-01T05:00", expectedDate: "Dec 1" },
+	7: { dateString: "2022-01-01T06:00", expectedDate: "Jan 1" },
+};
