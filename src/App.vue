@@ -1,11 +1,15 @@
 <script setup lang="ts">
-// here be imports of components
 import OptionsBar from "./components/OptionsBar.vue";
 </script>
 
 <template>
 	<header>
 		<h1>Weather checker</h1>
+		<img
+			class="header-img"
+			src="./assets/images/elegant-background.jpeg"
+			alt="Weather symbols"
+		/>
 	</header>
 
 	<main>
@@ -13,6 +17,8 @@ import OptionsBar from "./components/OptionsBar.vue";
 	</main>
 
 	<footer>
-		<p>Here be footer</p>
+		<div class="footer-wrapper">
+			<p>© Linnea Sandberg</p>
+		</div>
 	</footer>
 </template>

@@ -2,7 +2,7 @@
 import { onMounted, ref, watch } from "vue";
 import { getWeather } from "../services/openMateo";
 import WeatherCard from "./WeatherCard.vue";
-import { GetWeatherResponse } from "../types/openMateo.types";
+import { GetWeatherResponse } from "../types/openMateo";
 
 const props = defineProps({
 	latitude: Number,
@@ -17,6 +17,8 @@ const fetchWeatherData = async (): Promise<void> => {
 	if (props.latitude && props.longitude) {
 		try {
 			const data = await getWeather(props.latitude, props.longitude);
+
+			console.log("data: ", data);
 
 			if (!data) {
 				console.error("Data is empty");
@@ -46,7 +48,7 @@ onMounted(() => {
 
 <template>
 	<div class="weather-display-wrapper">
-		<h2 v-if="city">{{ city }}</h2>
+		<h2 v-if="city">{{ city }}`s weather</h2>
 		<h2 v-if="!city">No mans land..</h2>
 
 		<button @click="showAllDays = !showAllDays" class="select-button">

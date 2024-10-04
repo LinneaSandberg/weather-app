@@ -10,6 +10,9 @@ const config: Config = {
 	testEnvironmentOptions: {
 		customExportConditions: ["node", "node-addons"],
 	},
+	moduleNameMapper: {
+		"\\.(svg)$": "../components/tests/jest-svg-transform.ts",
+	},
 };
 
 export default config;
