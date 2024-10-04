@@ -48,7 +48,7 @@ onMounted(() => {
 
 <template>
 	<div class="weather-display-wrapper">
-		<h2 v-if="city">{{ city }}</h2>
+		<h2 v-if="city">{{ city }}`s weather</h2>
 		<h2 v-if="!city">No mans land..</h2>
 
 		<button @click="showAllDays = !showAllDays" class="select-button">

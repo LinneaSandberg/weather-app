@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, nextTick } from "vue";
 import WeatherDisplay from "./WeatherDisplay.vue";
 import { geocoding } from "../services/openMateo";
 import { GeoCodingResponse } from "../types/openMateo";
@@ -8,6 +8,7 @@ const city = ref("");
 const data = ref<GeoCodingResponse | null>(null);
 const latitude = ref<number | null>(null);
 const longitude = ref<number | null>(null);
+const displayWrapperRef = ref<HTMLElement | null>(null);
 
 const fetchLocationData = async (newCity: string) => {
 	if (!newCity) return;
@@ -18,6 +19,11 @@ const fetchLocationData = async (newCity: string) => {
 		if (isLatAndLongExisting(data)) {
 			latitude.value = data.results[0].latitude;
 			longitude.value = data.results[0].longitude;
+
+			await nextTick();
+			if (displayWrapperRef.value) {
+				displayWrapperRef.value.scrollIntoView({ behavior: "smooth" });
+			}
 		}
 	} catch (error) {
 		console.error(error);
@@ -29,7 +35,7 @@ const isLatAndLongExisting = (data: GeoCodingResponse) => {
 };
 
 onMounted(() => {
-	const defaultCity = "Trelleborg";
+	const defaultCity = "";
 	city.value = defaultCity;
 	fetchLocationData(defaultCity);
 });
@@ -46,7 +52,7 @@ onMounted(() => {
 		</form>
 	</div>
 
-	<div v-if="latitude && longitude" class="display-wrapper">
+	<div v-if="latitude && longitude" class="display-wrapper" ref="displayWrapperRef">
 		<WeatherDisplay :latitude="latitude" :longitude="longitude" :city="city" />
 	</div>
 </template>

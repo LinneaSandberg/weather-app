@@ -1,10 +1,10 @@
 enum weatherIcons {
-	SUN = "sunIcon",
-	CLOUD = "cloudIcon",
-	WIND = "windIcon",
-	RAIN = "rainIcon",
-	STORM = "stormIcon",
-	SNOW = "snowIcon",
+	SUN = "sun",
+	CLOUD = "cloud",
+	WIND = "wind",
+	RAIN = "rain",
+	STORM = "storm",
+	SNOW = "snow",
 }
 
 export default weatherIcons;
