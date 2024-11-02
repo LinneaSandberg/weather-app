@@ -1,13 +1,12 @@
-import moment from "moment";
 import { GetWeatherResponse } from "@/types/openMateo";
 import { weatherConditions } from "../weatherCodeObject";
 
 export const formatTime = (isoDate: string) => {
-	if (!moment(isoDate).isValid()) {
+	const date = new Date(isoDate);
+	if (isNaN(date.getTime())) {
 		throw new Error("Invalid date string");
 	}
-
-	return moment(isoDate).format("HH:mm");
+	return date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false });
 };
 
 export const getSunrise = (index: number, weatherData: GetWeatherResponse) => {
@@ -19,19 +18,20 @@ export const getSunset = (index: number, weatherData: GetWeatherResponse) => {
 };
 
 export const getWeekday = (dateString: string) => {
-	if (!moment(dateString).isValid()) {
+	const date = new Date(dateString);
+	if (isNaN(date.getTime())) {
 		throw new Error("Invalid date string");
 	}
-
-	return moment(dateString).format("dddd");
+	// Get weekday name
+	return date.toLocaleDateString("en-US", { weekday: "long" });
 };
 
 export const formatDate = (dateString: string) => {
-	if (!moment(dateString).isValid()) {
+	const date = new Date(dateString);
+	if (isNaN(date.getTime())) {
 		throw new Error("Invalid date string");
 	}
-
-	return moment(dateString).format("MMM D");
+	return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 };
 
 export const averageTemp = (index: number, weatherData: GetWeatherResponse) => {

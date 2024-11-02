@@ -119,7 +119,7 @@ export const dateString_mockdata = [
 ];
 
 export const formatTime_mockdata = [
-	{ isoDate: "2022-07-01T00:00", expectedTime: "00:00" },
+	{ isoDate: "2022-07-01T04:15", expectedTime: "04:15" },
 	{ isoDate: "2022-08-01T01:30", expectedTime: "01:30" },
 	{ isoDate: "2024-09-27T13:30", expectedTime: "13:30" },
 	{ isoDate: "2025-10-28T23:59", expectedTime: "23:59" },
