@@ -1,6 +1,5 @@
 import { averageTemp_badMockdata, averageTemp_Mockdata, dateString_mockdata, expectedAverageTemp, formatTime_mockdata, getDescription_mockdata, getIcon_badMockdata, getIcon_emptyMockdata, getIcon_mockdata, getSunrise_mockdata, getSunriseAndSunset_Mockdata, getSunset_mockdata, getWeatherCodes_mockdata, getWeekday_mockdata, } from "./mockdata";
 import { averageTemp, formatDate, formatTime, getDescription, getIcon, getSunrise, getSunset, getWeekday, } from "./weatherFunctions";
-// formatTime
 describe("formatTime", () => {
     test("should return the correct time format", () => {
         formatTime_mockdata.forEach((data) => {
@@ -14,7 +13,6 @@ describe("formatTime", () => {
         expect(() => formatTime("")).toThrow("Invalid date string");
     });
 });
-// getSunrise
 describe("getSunrise", () => {
     test("should return the correct formatted time for sunrise", () => {
         getSunrise_mockdata.forEach((data) => {
@@ -22,7 +20,6 @@ describe("getSunrise", () => {
         });
     });
 });
-// getSunset
 describe("getSunset", () => {
     test("should return the correct formatted time for sunset", () => {
         getSunset_mockdata.forEach((data) => {
@@ -30,7 +27,6 @@ describe("getSunset", () => {
         });
     });
 });
-// getWeekday
 describe("getWeekday", () => {
     getWeekday_mockdata.forEach((data) => {
         test("should return the right weekday from a datestring", () => {
@@ -44,7 +40,6 @@ describe("getWeekday", () => {
         expect(() => getWeekday("")).toThrow("Invalid date string");
     });
 });
-// formatDate
 describe("formatDate", () => {
     test("should return the correct date format", () => {
         dateString_mockdata.forEach((data) => {
@@ -58,7 +53,6 @@ describe("formatDate", () => {
         expect(() => formatDate("")).toThrow("Invalid date string");
     });
 });
-// averageTemp
 describe("averageTemp", () => {
     test("should return the avrage temperature of the max and min temperature for a day", () => {
         const index = 2;
@@ -73,29 +67,27 @@ describe("averageTemp", () => {
         expect(result).toBeUndefined();
     });
 });
-// getIcon
 describe("getIcon", () => {
-    test("should return the correct icon for all given weather codes", () => {
+    test("should return the correct icon paths for all given weather codes", () => {
         getIcon_mockdata.forEach((data) => {
             const icon = getIcon(data.dayIndex, getWeatherCodes_mockdata);
-            expect(icon).toBe(data.expectedIcon);
+            expect(icon).toBe(`assets/icons/${data.expectedIcon}.svg`);
         });
     });
-    test("if unexisting dayIndex", () => {
+    test("should throw an error if an unexisting dayIndex is provided", () => {
         expect(() => getIcon(-1, getWeatherCodes_mockdata)).toThrow();
     });
-    test("if weather_code is nonexisting", () => {
+    test("should throw an error if weather_code is nonexisting", () => {
         getIcon_badMockdata.daily.weather_code.forEach((_, index) => {
             expect(() => getIcon(index, getIcon_badMockdata)).toThrow();
         });
     });
-    test("if weatherData is empty", () => {
+    test("should return undefined if weatherData is empty", () => {
         getIcon_emptyMockdata.daily.weather_code.forEach((_, index) => {
             expect(() => getIcon(index, getIcon_emptyMockdata)).toBeUndefined();
         });
     });
 });
-// getDescription
 describe("getDescription", () => {
     test("should return the correct description for all given weather codes", () => {
         getDescription_mockdata.forEach((data) => {

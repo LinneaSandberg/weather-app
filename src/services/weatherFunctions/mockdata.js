@@ -179,7 +179,7 @@ export const getIcon_mockdata = [
     {
         dayIndex: 0,
         weatherData: getWeatherCodes_mockdata.daily.weather_code,
-        expectedIcon: weatherIcons.SUN,
+        expectedIcon: weatherIcons.SUN, // Assuming this is just the icon name
     },
     {
         dayIndex: 1,
