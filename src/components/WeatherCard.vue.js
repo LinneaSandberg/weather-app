@@ -1,8 +1,8 @@
-import arrowUp from "../assets/icons/arrowUp.svg";
-import arrowDown from "../assets/icons/arrowDown.svg";
-import sun from "../assets/icons/sun.svg";
-import rain from "../assets/icons/rain.svg";
-import wind from "../assets/icons/wind.svg";
+import arrowUp from "/assets/icons/arrowUp.svg";
+import arrowDown from "/assets/icons/arrowDown.svg";
+import sun from "/assets/icons/sun.svg";
+import rain from "/assets/icons/rain.svg";
+import wind from "/assets/icons/wind.svg";
 import { averageTemp, formatDate, getDescription, getIcon, getSunrise, getSunset, getWeekday, } from "../services/weatherFunctions/weatherFunctions";
 const { defineProps, defineSlots, defineEmits, defineExpose, defineModel, defineOptions, withDefaults, } = await import('vue');
 let __VLS_typeProps;
@@ -27,7 +27,7 @@ function __VLS_template() {
     let __VLS_resolvedLocalAndGlobalComponents;
     __VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("card") }, });
     __VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("upper-wrapper") }, });
-    __VLS_elementAsFunction(__VLS_intrinsicElements.img)({ ...{ class: ("weather-icon") }, src: ((`src/assets/icons/${__VLS_ctx.getIcon(__VLS_ctx.index, __VLS_ctx.weatherData)}.svg`)), alt: ((__VLS_ctx.getDescription(__VLS_ctx.index, __VLS_ctx.weatherData))), });
+    __VLS_elementAsFunction(__VLS_intrinsicElements.img)({ ...{ class: ("weather-icon") }, src: ((__VLS_ctx.getIcon(__VLS_ctx.index, __VLS_ctx.weatherData))), alt: ((__VLS_ctx.getDescription(__VLS_ctx.index, __VLS_ctx.weatherData))), });
     __VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("short-info-wrapper") }, });
     __VLS_elementAsFunction(__VLS_intrinsicElements.p, __VLS_intrinsicElements.p)({});
     (__VLS_ctx.getWeekday(__VLS_ctx.time));

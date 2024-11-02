@@ -20,7 +20,7 @@ function __VLS_template() {
     let __VLS_resolvedLocalAndGlobalComponents;
     __VLS_elementAsFunction(__VLS_intrinsicElements.header, __VLS_intrinsicElements.header)({});
     __VLS_elementAsFunction(__VLS_intrinsicElements.h1, __VLS_intrinsicElements.h1)({});
-    __VLS_elementAsFunction(__VLS_intrinsicElements.img)({ ...{ class: ("header-img") }, src: ("./assets/images/elegant-background.jpeg"), alt: ("Weather symbols"), });
+    __VLS_elementAsFunction(__VLS_intrinsicElements.img)({ ...{ class: ("header-img") }, src: ("/assets/images/elegant-background.jpeg"), alt: ("Weather symbols"), });
     __VLS_elementAsFunction(__VLS_intrinsicElements.main, __VLS_intrinsicElements.main)({});
     // @ts-ignore
     [OptionsBar,];

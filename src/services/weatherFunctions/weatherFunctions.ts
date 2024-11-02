@@ -54,7 +54,8 @@ export const averageTemp = (index: number, weatherData: GetWeatherResponse) => {
 
 export const getIcon = (dayIndex: number, weatherData: GetWeatherResponse): string => {
 	const weatherCode = weatherData.daily.weather_code[dayIndex];
-	return weatherConditions[Number(weatherCode)].icon;
+	const iconName = weatherConditions[Number(weatherCode)].icon;
+	return `assets/icons/${iconName}.svg`;
 };
 
 export const getDescription = (index: number, weatherData: GetWeatherResponse): string => {

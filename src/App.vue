@@ -7,7 +7,7 @@ import OptionsBar from "./components/OptionsBar.vue";
 		<h1>Weather checker</h1>
 		<img
 			class="header-img"
-			src="./assets/images/elegant-background.jpeg"
+			src="/assets/images/elegant-background.jpeg"
 			alt="Weather symbols"
 		/>
 	</header>

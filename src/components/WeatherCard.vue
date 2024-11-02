@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import arrowUp from "../assets/icons/arrowUp.svg";
-import arrowDown from "../assets/icons/arrowDown.svg";
-import sun from "../assets/icons/sun.svg";
-import rain from "../assets/icons/rain.svg";
-import wind from "../assets/icons/wind.svg";
+import arrowUp from "/assets/icons/arrowUp.svg";
+import arrowDown from "/assets/icons/arrowDown.svg";
+import sun from "/assets/icons/sun.svg";
+import rain from "/assets/icons/rain.svg";
+import wind from "/assets/icons/wind.svg";
 import {
 	averageTemp,
 	formatDate,
@@ -27,7 +27,7 @@ const props = defineProps<{
 		<div class="upper-wrapper">
 			<img
 				class="weather-icon"
-				:src="`src/assets/icons/${getIcon(index, weatherData)}.svg`"
+				:src="getIcon(index, weatherData)"
 				:alt="getDescription(index, weatherData)"
 			/>
 			<div class="short-info-wrapper">
