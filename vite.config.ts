@@ -6,7 +6,7 @@ import vueJsx from "@vitejs/plugin-vue-jsx";
 
 export default defineConfig({
 	plugins: [vue(), vueJsx()],
-	base: "/",
+	base: "/weather-app/",
 	resolve: {
 		alias: {
 			"@": fileURLToPath(new URL("./src", import.meta.url)),
