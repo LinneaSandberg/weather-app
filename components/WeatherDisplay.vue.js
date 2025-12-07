@@ -77,8 +77,6 @@ if (__VLS_ctx.weatherData) {
 }
 /** @type {__VLS_StyleScopedClasses['weather-display-wrapper']} */ ;
 /** @type {__VLS_StyleScopedClasses['select-button']} */ ;
-/** @type {__VLS_StyleScopedClasses['list-wrapper']} */ ;
-/** @type {__VLS_StyleScopedClasses['grid-view']} */ ;
 var __VLS_dollars;
 const __VLS_self = (await import('vue')).defineComponent({
     setup() {
